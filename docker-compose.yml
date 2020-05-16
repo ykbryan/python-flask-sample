@@ -1,0 +1,13 @@
+version: '3'
+services:
+  web:
+    command: python application.py
+    environment:
+      - PYTHONUNBUFFERED=0
+    build:
+      context: .
+    ports:
+      - 5000:8080
+    volumes:
+      - ./logs:/code/logs
+      - .:/code
