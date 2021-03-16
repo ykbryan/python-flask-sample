@@ -14,9 +14,5 @@ def hello_fargate():
 def hello_ec2():
     return 'Hello ECS on EC2!'
 
-@app.route('/anotherec2')
-def hello_anotherec2():
-    return 'Hello another ECS service on EC2!'
-
 if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0',port=8080)
