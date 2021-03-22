@@ -1,10 +1,14 @@
 version: 0.2
 
 phases:
+  install: 
+    commands:
+      - yum update -y
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
       - aws --version
+      - docker version
       - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
       # - IMAGE_TAG=latest
       - echo Getting image tag name
