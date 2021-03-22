@@ -16,7 +16,7 @@ phases:
       - echo Build started on `date`
       - echo Building the Docker image...
       - export DOCKER_CLI_EXPERIMENTAL=enabled
-      - docker buildx build -t --platform linux/arm/v7,linux/arm64/v8,linux/amd64 $REPOSITORY_URI:latest .
+      - docker buildx build --platform linux/arm/v7,linux/arm64/v8,linux/amd64 -t $REPOSITORY_URI:latest .
       - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
   post_build:
     commands:
