@@ -12,6 +12,7 @@ phases:
       - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - echo $IMAGE_TAG
       - export DOCKER_CLI_EXPERIMENTAL=enabled
+      - docker version
       - docker buildx ls
       - docker buildx create --name mybuilder
       - docker buildx ls
