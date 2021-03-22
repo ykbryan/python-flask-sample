@@ -11,11 +11,14 @@ phases:
       - echo $CODEBUILD_RESOLVED_SOURCE_VERSION
       - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - echo $IMAGE_TAG
+      - export DOCKER_CLI_EXPERIMENTAL=enabled
+      - docker buildx ls
+      - docker buildx create --name mybuilder
+      - docker buildx ls
   build:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - export DOCKER_CLI_EXPERIMENTAL=enabled
       - docker build -t $REPOSITORY_URI:latest .
       - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
   post_build:
